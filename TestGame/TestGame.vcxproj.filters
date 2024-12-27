@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DX12.cpp">
+      <Filter>GameEngine\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>GameEngine\VertexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="PSO.cpp">
+      <Filter>GameEngine\PSO</Filter>
+    </ClCompile>
+    <ClCompile Include="RootSignature.cpp">
+      <Filter>GameEngine\RootSignature</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>GameEngine\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp">
+      <Filter>GameEngine\ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="DescriptorHeap.cpp">
+      <Filter>GameEngine\DescriptorHeap</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>GameEngine\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>GameEngine\IndexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>TestGame</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>TestGame</Filter>
+    </ClCompile>
+    <ClCompile Include="BackBuffer.cpp">
+      <Filter>GameEngine\BackBuffer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{00ae8176-74ed-49bb-9806-2f8df8e3cd56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\DX12">
+      <UniqueIdentifier>{66f41617-a276-42fa-a69c-cb3a0dfe5594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\VertexBuffer">
+      <UniqueIdentifier>{506bbdbf-2050-469c-9117-55cfae458118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\PSO">
+      <UniqueIdentifier>{1435d503-755d-4aad-b449-563cea524c3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\RootSignature">
+      <UniqueIdentifier>{a4d40a8d-05e9-4b23-8961-eddfdfc21f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Triangle">
+      <UniqueIdentifier>{a922077f-0cc7-45a7-95cc-5798e4188d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Utilities">
+      <UniqueIdentifier>{dc2841f7-87fa-4069-991a-2b591c6eacd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\ConstantBuffer">
+      <UniqueIdentifier>{1bcf05ca-3b28-46d7-a3db-b281a13e7718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\DescriptorHeap">
+      <UniqueIdentifier>{5d2f3bab-b30e-467d-b045-c09a9508ed5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Rectangle">
+      <UniqueIdentifier>{1000f6af-7b7a-40f1-8f2c-3800719d63b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\IndexBuffer">
+      <UniqueIdentifier>{201b29e2-47e6-4e02-ba53-58f05b4938d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestGame">
+      <UniqueIdentifier>{631216d1-3b9a-4d7b-94c2-e9c4699ab0c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\BackBuffer">
+      <UniqueIdentifier>{cccab2d3-e8a8-4d16-baaa-99ee68d2611b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DX12.h">
+      <Filter>GameEngine\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>GameEngine\VertexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="PSO.h">
+      <Filter>GameEngine\PSO</Filter>
+    </ClInclude>
+    <ClInclude Include="RootSignature.h">
+      <Filter>GameEngine\RootSignature</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>GameEngine\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedStructs.h">
+      <Filter>GameEngine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>GameEngine\ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="DescriptorHeap.h">
+      <Filter>GameEngine\DescriptorHeap</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>GameEngine\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>GameEngine\IndexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>TestGame</Filter>
+    </ClInclude>
+    <ClInclude Include="BackBuffer.h">
+      <Filter>GameEngine\BackBuffer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Triangle_PS.hlsl">
+      <Filter>GameEngine\Triangle</Filter>
+    </FxCompile>
+    <FxCompile Include="Triangle_VS.hlsl">
+      <Filter>GameEngine\Triangle</Filter>
+    </FxCompile>
+    <FxCompile Include="Rectangle_VS.hlsl">
+      <Filter>GameEngine\Rectangle</Filter>
+    </FxCompile>
+    <FxCompile Include="Rectangle_PS.hlsl">
+      <Filter>GameEngine\Rectangle</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
