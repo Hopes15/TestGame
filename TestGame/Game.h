@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "DX12.h"
 #include "BackBuffer.h"
+#include "Rectangle.h"
 
 class Game
 {
@@ -23,5 +24,7 @@ private:
 	Window		mWindow;
 	DX12*		pDX12	  = nullptr;
 	BackBuffer* pBackBuff = nullptr;
+
+	GameEngine::Rectangle* pRectangle = nullptr;
 };
 

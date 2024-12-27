@@ -16,7 +16,7 @@ namespace GameEngine
 		/// <summary>
 		/// Rectangleクラスを初期化
 		/// </summary>
-		Rectangle();
+		Rectangle(float x, float y, const float width, const float height);
 
 		/// <summary>
 		/// 毎フレーム更新される
@@ -27,21 +27,21 @@ namespace GameEngine
 		/// 描画命令
 		/// </summary>
 		/// <param name="cmdList">ID3D12GraphicsCommandListのインスタンス</param>
-		void Draw(ID3D12GraphicsCommandList* cmdList);
+		void Draw();
 
 		~Rectangle();
 
 	private:
-		VertexBuffer* pVertexBuff = nullptr;
-		IndexBuffer* pIndexBuff = nullptr;
+		VertexBuffer*	pVertexBuff   = nullptr;
+		IndexBuffer*	pIndexBuff	  = nullptr;
 		ConstantBuffer* pConstantBuff = nullptr;
-		DescriptorHeap* pDescHeap = nullptr;
-		RootSignature* pRootSig = nullptr;
-		PSO* pPso = nullptr;
+		DescriptorHeap* pDescHeap	  = nullptr;
+		RootSignature*  pRootSig	  = nullptr;
+		PSO*			pPso		  = nullptr;
+		DX12*			pDX12		  = nullptr;
 
-		XMMATRIX world;
+		XMMATRIX mMatrix;
 
-		//TEST
 		float x, y, z;
 	};
 }

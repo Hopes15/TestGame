@@ -14,6 +14,8 @@ void Game::Initialize()
 
 	//バックバッファー生成
 	pBackBuff = new BackBuffer();
+
+	pRectangle = new GameEngine::Rectangle(100.0f, 100.0f, 50.0f, 10.0f);
 }
 
 void Game::RunLoop()
@@ -54,9 +56,13 @@ void Game::Update()
 
 void Game::Output()
 {
+	pRectangle->Draw();
+
+	////////////////////////////////////////////////////////////////////
 	//バックバッファーの描画終了処理
 	pBackBuff->CloseBackBuffer();
 
 	//描画終了
 	pDX12->ExitDrawing();
+	////////////////////////////////////////////////////////////////////
 }

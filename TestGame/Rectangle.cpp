@@ -1,14 +1,19 @@
 #include "Rectangle.h"
 
-GameEngine::Rectangle::Rectangle() : world(XMMatrixIdentity()), x(0), y(0), z(0)
+GameEngine::Rectangle::Rectangle(float x, float y, const float width, const float height) :
+	pDX12(DX12::GetInstance()),
+	mMatrix(XMMatrixIdentity()), 
+	x(x),
+	y(y),
+	z(0)
 {
 	//頂点
 	XMFLOAT3 vertices[] =
 	{
-		{-0.5f, -0.5f, 0.0f},
-		{-0.5f,  0.5f, 0.0f},
-		{ 0.5f, -0.5f, 0.0f},
-		{ 0.5f,  0.5f, 0.0f}
+		{  0.0f, height, 0.0f}, //左下
+		{  0.0f,   0.0f, 0.0f}, //左上
+		{ width, height, 0.0f}, //右下
+		{ width,   0.0f, 0.0f}  //右上
 	};
 
 	UINT64 vertexSize = sizeof(vertices);
@@ -32,17 +37,20 @@ GameEngine::Rectangle::Rectangle() : world(XMMatrixIdentity()), x(0), y(0), z(0)
 	pDescHeap = new DescriptorHeap();
 	pDescHeap->CreateAsCBV_SRV_UAV(/*numDescriptors = */ 1);
 
-	//World行列
+	//Pixel座標に変換
+	mMatrix.r[0].m128_f32[0] =  2.0f / pDX12->WINDOW_WIDTH;
+	mMatrix.r[1].m128_f32[1] = -2.0f / pDX12->WINDOW_HEIGHT;
+	mMatrix.r[3].m128_f32[0] = -1.0;
+	mMatrix.r[3].m128_f32[1] =  1.0;
+
 	UINT64 bufferSize = (sizeof(XMMATRIX) + 0xff) & ~0xff;
 
 	//HeapHandle(Pointer)
 	auto handle = pDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 
-	//TODO:View, Projection行列の処理をやる
-
 	//CBuffを作成
 	pConstantBuff = new ConstantBuffer(bufferSize, handle);
-	pConstantBuff->CopyBufferToVRAM(&world);
+	pConstantBuff->CopyBufferToVRAM(&mMatrix);
 
 	//RootSignature関連
 	{
@@ -93,10 +101,13 @@ GameEngine::Rectangle::Rectangle() : world(XMMatrixIdentity()), x(0), y(0), z(0)
 
 void GameEngine::Rectangle::Update()
 {
+
 }
 
-void GameEngine::Rectangle::Draw(ID3D12GraphicsCommandList* cmdList)
+void GameEngine::Rectangle::Draw()
 {
+	auto cmdList = DX12::GetInstance()->GetCmdList();
+
 	//Pipeline, RootSignatureをセット
 	cmdList->SetPipelineState(pPso->GetPointerOfPipeline());
 	cmdList->SetGraphicsRootSignature(pRootSig->GetPointerOfRootSignature());
