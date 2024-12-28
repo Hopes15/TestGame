@@ -2,11 +2,8 @@
 
 void Game::Initialize()
 {
-	const UINT WIDTH  = 640;
-	const UINT HEIGHT = 480;
-
-	const float BALL_WIDTH  = 5.0f;
-	const float BALL_HEIGHT = 5.0f;
+	const UINT WIDTH  = 1920;
+	const UINT HEIGHT = 1080;
 
 	//ウィンドウ作成
 	mWindow.SetUpWindow(WIDTH, HEIGHT, L"TestGame");
@@ -19,15 +16,31 @@ void Game::Initialize()
 	pBackBuff = new BackBuffer();
 
 	//ボール用の初期値設定
-	Transform transform = {};
-	auto width  = (WIDTH  / 2) - (BALL_WIDTH  / 2);
-	auto height = (HEIGHT / 2) - (BALL_HEIGHT / 2);
-	transform.SetPosition(width, height, 0);
-	transform.SetScale(10, 20, 0);
+	const float BALL_WIDTH  = 10.0f;
+	const float BALL_HEIGHT = 10.0f;
+
+	Transform trans_Ball = {};
+	auto x  = (WIDTH  / 2) - (BALL_WIDTH  / 2);
+	auto y  = (HEIGHT / 2) - (BALL_HEIGHT / 2);
+	trans_Ball.SetPosition(0, 0, 0);
 
 	//ボール
-	pRectangle = new GameEngine::Rectangle(BALL_WIDTH, BALL_HEIGHT);
-	pRectangle->SetUpTransform(transform);
+	pBall = new GameEngine::Rectangle(BALL_WIDTH, BALL_HEIGHT);
+	pBall->SetUpTransform(trans_Ball);
+
+	//壁用の設定
+	const float WALL_WIDTH  = WIDTH;
+	const float WALL_HEIGHT = 20.0f;
+
+	Transform trans_Wall[2] = {};
+	trans_Wall[0].SetPosition(0, 0, 0);						//上用
+	trans_Wall[1].SetPosition(0, HEIGHT - WALL_HEIGHT, 0);	//下用
+
+	pWall_T = new GameEngine::Rectangle(WALL_WIDTH, WALL_HEIGHT);
+	pWall_T->SetUpTransform(trans_Wall[0]);
+
+	pWall_B = new GameEngine::Rectangle(WALL_WIDTH, WALL_HEIGHT);
+	pWall_B->SetUpTransform(trans_Wall[1]);
 }
 
 void Game::RunLoop()
@@ -57,7 +70,7 @@ void Game::Input()
 
 void Game::Update()
 {
-	//pRectangle->Update();
+	pBall->Update();
 }
 
 void Game::Output()
@@ -74,7 +87,9 @@ void Game::Output()
 	////////////////////////////////////////////////////////////////////
 
 	//描画
-	pRectangle->Draw();
+	pBall->Draw();
+	pWall_T->Draw();
+	pWall_B->Draw();
 
 	////////////////////////////////////////////////////////////////////
 	//バックバッファーの描画終了処理

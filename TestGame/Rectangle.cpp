@@ -31,7 +31,7 @@ GameEngine::Rectangle::Rectangle(const float width, const float height) :
 	pIndexBuff = new IndexBuffer(indexSize);
 	pIndexBuff->CopyBufferToVRAM(indices);
 
-	//ViewProjections—ñ
+	//ViewProjections—ñ(2D)
 	mViewProjection.r[0].m128_f32[0] =  2.0f / pDX12->WINDOW_WIDTH;
 	mViewProjection.r[1].m128_f32[1] = -2.0f / pDX12->WINDOW_HEIGHT;
 	mViewProjection.r[3].m128_f32[0] = -1.0;
@@ -109,17 +109,20 @@ void GameEngine::Rectangle::SetUpTransform(Transform& transform)
 {
 	mTransform = transform;
 
-	CalcWorldMatrix();
-
-	std::cout << "x : " << mTransform.position.x << " y : " << mTransform.position.y << " z : " << mTransform.position.z << std::endl;
+	mWorld *= XMMatrixScaling(mTransform.scale.x, mTransform.scale.y, mTransform.scale.z);
+	mWorld *= XMMatrixRotationZ(mTransform.rotation.z);
+	mWorld *= XMMatrixTranslation(mTransform.position.x, mTransform.position.y, mTransform.position.z);
+	pCBuff_World->UpdateCBuffer(&mWorld);
 }
 
 void GameEngine::Rectangle::Update()
 {
-	mTransform.position.x += 0.007f;
-	mTransform.position.y += 0.005f;
+	mTransform.position.x += 1.5f;
+	mTransform.position.y += 1.0f;
 
-	CalcWorldMatrix();
+	auto translation = XMMatrixTranslation(mTransform.position.x, mTransform.position.y, mTransform.position.z);
+	mWorld = translation;
+	pCBuff_World->UpdateCBuffer(&mWorld);
 
 	std::cout << "x : " << mTransform.position.x << " y : " << mTransform.position.y << " z : " << mTransform.position.z << std::endl;
 }
@@ -159,12 +162,4 @@ GameEngine::Rectangle::~Rectangle()
 	delete pCBuff_World;
 	delete pIndexBuff;
 	delete pVertexBuff;
-}
-
-void GameEngine::Rectangle::CalcWorldMatrix()
-{
-	mWorld *= XMMatrixScaling(mTransform.scale.x, mTransform.scale.y, mTransform.scale.z);
-	mWorld *= XMMatrixRotationZ(mTransform.rotation.z);
-	mWorld *= XMMatrixTranslation(mTransform.position.x, mTransform.position.y, mTransform.position.z);
-	pCBuff_World->UpdateCBuffer(&mWorld);
 }

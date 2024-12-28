@@ -38,7 +38,6 @@ namespace GameEngine
 		~Rectangle();
 
 	private:
-		void CalcWorldMatrix();
 
 	private:
 		VertexBuffer*	pVertexBuff		= nullptr;
