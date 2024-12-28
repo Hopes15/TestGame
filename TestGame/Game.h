@@ -3,6 +3,7 @@
 #include "DX12.h"
 #include "BackBuffer.h"
 #include "Rectangle.h"
+#include "SharedStructs.h"
 
 class Game
 {

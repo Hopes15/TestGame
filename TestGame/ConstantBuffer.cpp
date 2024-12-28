@@ -32,7 +32,6 @@ ConstantBuffer::ConstantBuffer(UINT64 bufferSize, D3D12_CPU_DESCRIPTOR_HANDLE ha
 void ConstantBuffer::CopyBufferToVRAM(void* pSomeThing)
 {
 	//間違っていると思うけどとりあえず毎回マッピングしなおす方法で
-	void* pMappedSomeThing = nullptr;
 	auto result = mConstantBuff->Map(0, nullptr, (void**)&pMappedSomeThing);
 
 	if (FAILED(result)) {
@@ -40,6 +39,11 @@ void ConstantBuffer::CopyBufferToVRAM(void* pSomeThing)
 		std::cout << "ConstantBufferのマッピングに失敗" << std::endl;
 #endif
 	}
+	memcpy(pMappedSomeThing, pSomeThing, mCBV.SizeInBytes);
+}
+
+void ConstantBuffer::UpdateCBuffer(void* pSomeThing)
+{
 	memcpy(pMappedSomeThing, pSomeThing, mCBV.SizeInBytes);
 }
 

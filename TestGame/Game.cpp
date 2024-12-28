@@ -5,6 +5,9 @@ void Game::Initialize()
 	const UINT WIDTH  = 640;
 	const UINT HEIGHT = 480;
 
+	const float BALL_WIDTH  = 5.0f;
+	const float BALL_HEIGHT = 5.0f;
+
 	//ウィンドウ作成
 	mWindow.SetUpWindow(WIDTH, HEIGHT, L"TestGame");
 
@@ -15,7 +18,16 @@ void Game::Initialize()
 	//バックバッファー生成
 	pBackBuff = new BackBuffer();
 
-	pRectangle = new GameEngine::Rectangle(100.0f, 100.0f, 50.0f, 10.0f);
+	//ボール用の初期値設定
+	Transform transform = {};
+	auto width  = (WIDTH  / 2) - (BALL_WIDTH  / 2);
+	auto height = (HEIGHT / 2) - (BALL_HEIGHT / 2);
+	transform.SetPosition(width, height, 0);
+	transform.SetScale(10, 20, 0);
+
+	//ボール
+	pRectangle = new GameEngine::Rectangle(BALL_WIDTH, BALL_HEIGHT);
+	pRectangle->SetUpTransform(transform);
 }
 
 void Game::RunLoop()
@@ -40,6 +52,17 @@ void Game::Quit()
 
 void Game::Input()
 {
+
+}
+
+void Game::Update()
+{
+	//pRectangle->Update();
+}
+
+void Game::Output()
+{
+	////////////////////////////////////////////////////////////////////
 	//描画準備
 	pDX12->EnterDrawing();
 
@@ -48,14 +71,9 @@ void Game::Input()
 
 	//バックバッファーの準備
 	pBackBuff->OpenBackBuffer(clearColor);
-}
+	////////////////////////////////////////////////////////////////////
 
-void Game::Update()
-{
-}
-
-void Game::Output()
-{
+	//描画
 	pRectangle->Draw();
 
 	////////////////////////////////////////////////////////////////////

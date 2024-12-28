@@ -1,11 +1,9 @@
 #include "Rectangle.h"
 
-GameEngine::Rectangle::Rectangle(float x, float y, const float width, const float height) :
-	pDX12(DX12::GetInstance()),
-	mMatrix(XMMatrixIdentity()), 
-	x(x),
-	y(y),
-	z(0)
+GameEngine::Rectangle::Rectangle(const float width, const float height) :
+	pDX12		   (DX12::GetInstance()),
+	mWorld		   (XMMatrixIdentity()),
+	mViewProjection(XMMatrixIdentity())
 {
 	//頂点
 	XMFLOAT3 vertices[] =
@@ -14,7 +12,7 @@ GameEngine::Rectangle::Rectangle(float x, float y, const float width, const floa
 		{  0.0f,   0.0f, 0.0f}, //左上
 		{ width, height, 0.0f}, //右下
 		{ width,   0.0f, 0.0f}  //右上
-	};
+	};	
 
 	UINT64 vertexSize = sizeof(vertices);
 	UINT vertexStride = sizeof(XMFLOAT3);
@@ -33,34 +31,42 @@ GameEngine::Rectangle::Rectangle(float x, float y, const float width, const floa
 	pIndexBuff = new IndexBuffer(indexSize);
 	pIndexBuff->CopyBufferToVRAM(indices);
 
+	//ViewProjection行列
+	mViewProjection.r[0].m128_f32[0] =  2.0f / pDX12->WINDOW_WIDTH;
+	mViewProjection.r[1].m128_f32[1] = -2.0f / pDX12->WINDOW_HEIGHT;
+	mViewProjection.r[3].m128_f32[0] = -1.0;
+	mViewProjection.r[3].m128_f32[1] =  1.0;
+
 	//DescriptorHeap
 	pDescHeap = new DescriptorHeap();
-	pDescHeap->CreateAsCBV_SRV_UAV(/*numDescriptors = */ 1);
-
-	//Pixel座標に変換
-	mMatrix.r[0].m128_f32[0] =  2.0f / pDX12->WINDOW_WIDTH;
-	mMatrix.r[1].m128_f32[1] = -2.0f / pDX12->WINDOW_HEIGHT;
-	mMatrix.r[3].m128_f32[0] = -1.0;
-	mMatrix.r[3].m128_f32[1] =  1.0;
-
-	UINT64 bufferSize = (sizeof(XMMATRIX) + 0xff) & ~0xff;
+	pDescHeap->CreateAsCBV_SRV_UAV(/*numDescriptors = */ 2);
 
 	//HeapHandle(Pointer)
 	auto handle = pDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 
-	//CBuffを作成
-	pConstantBuff = new ConstantBuffer(bufferSize, handle);
-	pConstantBuff->CopyBufferToVRAM(&mMatrix);
+	//CBuffを作成(World行列用)
+	UINT64 bufferSize = (sizeof(XMMATRIX) + 0xff) & ~0xff;
+	pCBuff_World = new ConstantBuffer(bufferSize, handle);
+	pCBuff_World->CopyBufferToVRAM(&mWorld);
+
+	handle.ptr += pDX12->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
+	//CBuffを作成(ViewProjection行列用)
+	pCBuff_ViewProj = new ConstantBuffer(bufferSize, handle);
+	pCBuff_ViewProj->CopyBufferToVRAM(&mViewProjection);
 
 	//RootSignature関連
 	{
 		//DescriptorRange
-		CD3DX12_DESCRIPTOR_RANGE descRanges[1] = {};
+		CD3DX12_DESCRIPTOR_RANGE descRanges[2] = {};
+		//WorldMatrix
 		descRanges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*NumDescriptor = */ 1, /*slot = */ 0);
+		//ViewProjectionMatrix
+		descRanges[1].Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, /*NumDescriptor = */ 1, /*slot = */ 1);
 
 		//RootParameter
 		CD3DX12_ROOT_PARAMETER rootParams[1] = {};
-		rootParams[0].InitAsDescriptorTable(/*NumDescRanges = */ 1, &descRanges[0]);
+		rootParams[0].InitAsDescriptorTable(/*NumDescRanges = */ 2, &descRanges[0]);
 
 		//Sampler
 		CD3DX12_STATIC_SAMPLER_DESC samplerDesc[1] = {};
@@ -99,9 +105,23 @@ GameEngine::Rectangle::Rectangle(float x, float y, const float width, const floa
 	}
 }
 
+void GameEngine::Rectangle::SetUpTransform(Transform& transform)
+{
+	mTransform = transform;
+
+	CalcWorldMatrix();
+
+	std::cout << "x : " << mTransform.position.x << " y : " << mTransform.position.y << " z : " << mTransform.position.z << std::endl;
+}
+
 void GameEngine::Rectangle::Update()
 {
+	mTransform.position.x += 0.007f;
+	mTransform.position.y += 0.005f;
 
+	CalcWorldMatrix();
+
+	std::cout << "x : " << mTransform.position.x << " y : " << mTransform.position.y << " z : " << mTransform.position.z << std::endl;
 }
 
 void GameEngine::Rectangle::Draw()
@@ -121,7 +141,7 @@ void GameEngine::Rectangle::Draw()
 	//IndexBufferをセット
 	cmdList->IASetIndexBuffer(pIndexBuff->GetView());
 
-	//World行列をセット
+	//CBufferをセット
 	cmdList->SetDescriptorHeaps(1, pDescHeap->GetAddressOfDescriptorHeap());
 	auto heapHandle = pDescHeap->GetPointerOfDescriptorHeap()->GetGPUDescriptorHandleForHeapStart();
 	cmdList->SetGraphicsRootDescriptorTable(0, heapHandle);
@@ -135,7 +155,16 @@ GameEngine::Rectangle::~Rectangle()
 	delete pPso;
 	delete pRootSig;
 	delete pDescHeap;
-	delete pConstantBuff;
+	delete pCBuff_ViewProj;
+	delete pCBuff_World;
 	delete pIndexBuff;
 	delete pVertexBuff;
+}
+
+void GameEngine::Rectangle::CalcWorldMatrix()
+{
+	mWorld *= XMMatrixScaling(mTransform.scale.x, mTransform.scale.y, mTransform.scale.z);
+	mWorld *= XMMatrixRotationZ(mTransform.rotation.z);
+	mWorld *= XMMatrixTranslation(mTransform.position.x, mTransform.position.y, mTransform.position.z);
+	pCBuff_World->UpdateCBuffer(&mWorld);
 }

@@ -16,7 +16,13 @@ namespace GameEngine
 		/// <summary>
 		/// Rectangleクラスを初期化
 		/// </summary>
-		Rectangle(float x, float y, const float width, const float height);
+		Rectangle(const float width, const float height);
+
+		/// <summary>
+		/// RectangleのTransformをセットする
+		/// </summary>
+		/// <param name="transform"></param>
+		void SetUpTransform(Transform& transform);
 
 		/// <summary>
 		/// 毎フレーム更新される
@@ -32,17 +38,21 @@ namespace GameEngine
 		~Rectangle();
 
 	private:
-		VertexBuffer*	pVertexBuff   = nullptr;
-		IndexBuffer*	pIndexBuff	  = nullptr;
-		ConstantBuffer* pConstantBuff = nullptr;
-		DescriptorHeap* pDescHeap	  = nullptr;
-		RootSignature*  pRootSig	  = nullptr;
-		PSO*			pPso		  = nullptr;
-		DX12*			pDX12		  = nullptr;
+		void CalcWorldMatrix();
 
-		XMMATRIX mMatrix;
+	private:
+		VertexBuffer*	pVertexBuff		= nullptr;
+		IndexBuffer*	pIndexBuff		= nullptr;
+		ConstantBuffer* pCBuff_World	= nullptr;
+		ConstantBuffer* pCBuff_ViewProj = nullptr;
+		DescriptorHeap* pDescHeap		= nullptr;
+		RootSignature*  pRootSig		= nullptr;
+		PSO*			pPso			= nullptr;
+		DX12*			pDX12			= nullptr;
 
-		float x, y, z;
+		XMMATRIX mWorld;
+		XMMATRIX mViewProjection;
+		Transform mTransform = {};
 	};
 }
 

@@ -28,12 +28,15 @@ public:
 	/// <param name="pSomeThing">コンスタントバッファーに確保する何か</param>
 	void CopyBufferToVRAM(void* pSomeThing);
 
+	void UpdateCBuffer(void* pSomeThing);
+
 	~ConstantBuffer();
 
 private:
 	D3D12_CONSTANT_BUFFER_VIEW_DESC mCBV = {};
 
-	ID3D12Device*		   pDevice		 = nullptr;
-	ComPtr<ID3D12Resource> mConstantBuff = nullptr;
+	void*				   pMappedSomeThing = nullptr;
+	ID3D12Device*		   pDevice		    = nullptr;
+	ComPtr<ID3D12Resource> mConstantBuff	= nullptr;
 };
 
