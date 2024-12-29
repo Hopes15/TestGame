@@ -121,7 +121,7 @@ void GameEngine::Rectangle::Update()
 	mWorld = translation;
 	pCBuff_World->UpdateCBuffer(&mWorld);
 
-	std::cout << "x : " << mTransform.position.x << " y : " << mTransform.position.y << " z : " << mTransform.position.z << std::endl;
+	//std::cout << "x : " << mTransform.position.x << " y : " << mTransform.position.y << " z : " << mTransform.position.z << std::endl;
 }
 
 void GameEngine::Rectangle::Draw()

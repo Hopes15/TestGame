@@ -8,6 +8,9 @@ void Game::Initialize()
 	//ウィンドウ作成
 	mWindow.SetUpWindow(WIDTH, HEIGHT, L"TestGame");
 
+	//FPSCounter(Windowクラスに組み込んでもいいかも？)
+	pFPSManager = new FPSManager(60);
+
 	//DX12エンジンを作成
 	DX12::Create(WIDTH, HEIGHT, mWindow.GetWindowHandler());
 	pDX12 = DX12::GetInstance();
@@ -22,7 +25,7 @@ void Game::Initialize()
 	Transform trans_Ball = {};
 	auto x  = (WIDTH  / 2) - (BALL_WIDTH  / 2);
 	auto y  = (HEIGHT / 2) - (BALL_HEIGHT / 2);
-	trans_Ball.SetPosition(0, 0, 0);
+	trans_Ball.SetPosition(x, y, 0);
 
 	//ボール
 	pBall = new GameEngine::Rectangle(BALL_WIDTH, BALL_HEIGHT);
@@ -55,11 +58,15 @@ void Game::RunLoop()
 		Input();
 		Update();
 		Output();
+
+		pFPSManager->CalcFPS();
+		pFPSManager->OutputFPS();
 	}
 }
 
 void Game::Quit()
 {
+	delete pFPSManager;
 	delete pBackBuff;
 	DX12::Destroy();
 	mWindow.QuitApp();
@@ -72,8 +79,10 @@ void Game::Input()
 
 void Game::Update()
 {
-	pBall->mTransform.position.x += 0.5f;
-	pBall->mTransform.position.y += 0.5f;
+	auto deltaTime = pFPSManager->GetDeltaTime();
+
+	pBall->mTransform.position.x += 100.0f * deltaTime;
+	pBall->mTransform.position.y += 100.0f * deltaTime;
 	pBall->Update();
 
 }

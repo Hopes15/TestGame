@@ -1,5 +1,6 @@
 #pragma once
 #include "Window.h"
+#include "FPSManager.h"
 #include "DX12.h"
 #include "BackBuffer.h"
 #include "Rectangle.h"
@@ -23,8 +24,9 @@ private:
 
 private:
 	Window		mWindow;
-	DX12*		pDX12	  = nullptr;
-	BackBuffer* pBackBuff = nullptr;
+	FPSManager* pFPSManager = nullptr;
+	DX12*		pDX12		= nullptr;
+	BackBuffer* pBackBuff	= nullptr;
 
 	GameEngine::Rectangle* pBall   = nullptr;
 	GameEngine::Rectangle* pWall_T = nullptr;
