@@ -37,7 +37,8 @@ namespace GameEngine
 
 		~Rectangle();
 
-	private:
+	public:
+		Transform mTransform = {};
 
 	private:
 		VertexBuffer*	pVertexBuff		= nullptr;
@@ -51,7 +52,6 @@ namespace GameEngine
 
 		XMMATRIX mWorld;
 		XMMATRIX mViewProjection;
-		Transform mTransform = {};
 	};
 }
 

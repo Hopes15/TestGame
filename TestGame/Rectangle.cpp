@@ -117,9 +117,6 @@ void GameEngine::Rectangle::SetUpTransform(Transform& transform)
 
 void GameEngine::Rectangle::Update()
 {
-	mTransform.position.x += 1.5f;
-	mTransform.position.y += 1.0f;
-
 	auto translation = XMMatrixTranslation(mTransform.position.x, mTransform.position.y, mTransform.position.z);
 	mWorld = translation;
 	pCBuff_World->UpdateCBuffer(&mWorld);
