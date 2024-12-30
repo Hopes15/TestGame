@@ -25,7 +25,7 @@ void Game::Initialize()
 	Transform trans_Ball = {};
 	auto x  = (WIDTH  / 2) - (BALL_WIDTH  / 2);
 	auto y  = (HEIGHT / 2) - (BALL_HEIGHT / 2);
-	trans_Ball.SetPosition(x, y, 0);
+	trans_Ball.SetPosition(0, 0, 0);
 
 	//É{Å[Éã
 	pBall = new GameEngine::Rectangle(BALL_WIDTH, BALL_HEIGHT);

@@ -37,7 +37,9 @@
     <ClCompile Include="BackBuffer.cpp">
       <Filter>GameEngine\BackBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="FPSManager.cpp" />
+    <ClCompile Include="FPSManager.cpp">
+      <Filter>GameEngine\FPSManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameEngine">
@@ -120,7 +122,9 @@
     <ClInclude Include="BackBuffer.h">
       <Filter>GameEngine\BackBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="FPSManager.h" />
+    <ClInclude Include="FPSManager.h">
+      <Filter>GameEngine\FPSManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Triangle_PS.hlsl">
