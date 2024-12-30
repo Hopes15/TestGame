@@ -137,6 +137,7 @@
     <ClCompile Include="FPSManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PSO.cpp" />
     <ClCompile Include="Rectangle.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="FPSManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="PSO.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RootSignature.h" />

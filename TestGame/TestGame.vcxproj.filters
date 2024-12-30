@@ -40,6 +40,9 @@
     <ClCompile Include="FPSManager.cpp">
       <Filter>GameEngine\FPSManager</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>GameEngine\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameEngine">
@@ -84,6 +87,9 @@
     <Filter Include="GameEngine\FPSManager">
       <UniqueIdentifier>{07a225b5-070d-4549-82ca-98d6bfb76ff3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Input">
+      <UniqueIdentifier>{03700266-f322-403d-acca-671642be247c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DX12.h">
@@ -124,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="FPSManager.h">
       <Filter>GameEngine\FPSManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>GameEngine\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
