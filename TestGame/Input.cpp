@@ -16,7 +16,9 @@ Input::Input(HWND hwnd)
 
 	if (FAILED(result))
 	{
+#ifdef _DEBUG
 		std::cout << "DirectInput‚Ì¶¬‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
+#endif
 		return;
 	}
 
@@ -29,7 +31,9 @@ Input::Input(HWND hwnd)
 
 	if (FAILED(result))
 	{
+#ifdef _DEBUG
 		std::cout << "Device‚Ì¶¬‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
+#endif
 		return;
 	}
 
@@ -38,7 +42,9 @@ Input::Input(HWND hwnd)
 
 	if (FAILED(result))
 	{
+#ifdef _DEBUG
 		std::cout << "Device‚ÌFormat‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
+#endif
 		return;
 	}
 
@@ -50,7 +56,9 @@ Input::Input(HWND hwnd)
 
 	if (FAILED(result))
 	{
+#ifdef _DEBUG
 		std::cout << "Device‚ÌÝ’è‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
+#endif
 		return;
 	}
 

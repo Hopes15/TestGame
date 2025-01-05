@@ -38,5 +38,7 @@ FPSManager::~FPSManager()
 
 void FPSManager::OutputFPS()
 {
+#ifdef _DEBUG
 	std::cout << mFPS << " FPS" << std::endl;
+#endif
 }

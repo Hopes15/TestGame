@@ -32,7 +32,7 @@ public:
 	/// DeltaTime‚ð•Ô‚·
 	/// </summary>
 	/// <returns>float DeltaTime</returns>
-	inline float GetDeltaTime() { return mDeltaTime_s; }
+	inline float GetDeltaTime() const { return mDeltaTime_s; }
 
 	~FPSManager();
 
