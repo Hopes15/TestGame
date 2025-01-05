@@ -4,6 +4,7 @@
 #endif
 
 //DirectX12
+#include <d3d12.h>
 #include <d3dx12.h>
 #pragma comment (lib, "d3d12.lib")
 
@@ -32,7 +33,7 @@ public:
 	~BackBuffer();
 
 private:
-	D3D12_VIEWPORT mViewPort = {};
+	D3D12_VIEWPORT mViewPort	= {};
 	D3D12_RECT     mScissorRect = {};
 
 	DescriptorHeap* pRTVDescHeap = nullptr;

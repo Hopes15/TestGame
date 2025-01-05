@@ -4,6 +4,7 @@
 #endif
 
 //DirectX12
+#include <d3d12.h>
 #include <d3dx12.h>
 #pragma comment (lib, "d3d12.lib")
 
@@ -38,7 +39,7 @@ public:
 private:
 	D3D12_INDEX_BUFFER_VIEW mIBV = {};
 
-	ID3D12Device* pDevice = nullptr;
+	ID3D12Device*		   pDevice		= nullptr;
 	ComPtr<ID3D12Resource> mIndexBuffer = nullptr;
 };
 

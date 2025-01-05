@@ -3,6 +3,7 @@
 DX12* DX12::pInstance = nullptr;
 
 //デバックレイヤー
+#ifdef _DEBUG
 void EnableDebugLayer() {
 	ComPtr<ID3D12Debug> debugLayer = nullptr;
 	auto result = D3D12GetDebugInterface(IID_PPV_ARGS(debugLayer.ReleaseAndGetAddressOf()));
@@ -12,6 +13,7 @@ void EnableDebugLayer() {
 	debugLayer->EnableDebugLayer();
 	debugLayer.Reset();
 }
+#endif
 
 DX12::DX12(UINT WIDTH, UINT HEIGHT, HWND hwnd) : 
 	WINDOW_WIDTH  (WIDTH),
@@ -22,7 +24,7 @@ DX12::DX12(UINT WIDTH, UINT HEIGHT, HWND hwnd) :
 {
 #ifdef _DEBUG
 	EnableDebugLayer();
-#endif // _DEBUG
+#endif
 
 	//モジュールの初期化
 	if (!CreateFactory()) return;
