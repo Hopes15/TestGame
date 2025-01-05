@@ -16,7 +16,10 @@ namespace GameEngine
 		/// <summary>
 		/// Rectangleクラスを初期化
 		/// </summary>
-		Rectangle(const float width, const float height);
+		/// <param name="color">四角形の色(XMFLOAT4)</param>
+		/// <param name="width">幅</param>
+		/// <param name="height">高さ</param>
+		Rectangle(XMFLOAT4 color = {1, 1, 1, 1}, const float width = 10.0f, const float height = 10.0f);
 
 		/// <summary>
 		/// RectangleのTransformをセットする
@@ -41,6 +44,12 @@ namespace GameEngine
 		Transform mTransform = {};
 
 	private:
+		struct Vertex
+		{
+			XMFLOAT3 pos;
+			XMFLOAT4 color;
+		};
+
 		VertexBuffer*	pVertexBuff		= nullptr;
 		IndexBuffer*	pIndexBuff		= nullptr;
 		ConstantBuffer* pCBuff_World	= nullptr;

@@ -1,21 +1,21 @@
 #include "Rectangle.h"
 
-GameEngine::Rectangle::Rectangle(const float width, const float height) :
+GameEngine::Rectangle::Rectangle(XMFLOAT4 color, const float width, const float height) :
 	pDX12		   (DX12::GetInstance()),
 	mWorld		   (XMMatrixIdentity()),
 	mViewProjection(XMMatrixIdentity())
 {
 	//頂点
-	XMFLOAT3 vertices[] =
+	Vertex vertices[] =
 	{
-		{  0.0f, height, 0.0f}, //左下
-		{  0.0f,   0.0f, 0.0f}, //左上
-		{ width, height, 0.0f}, //右下
-		{ width,   0.0f, 0.0f}  //右上
+		{{  0.0f, height, 0.0f}, color}, //左下
+		{{  0.0f,   0.0f, 0.0f}, color}, //左上
+		{{ width, height, 0.0f}, color}, //右下
+		{{ width,   0.0f, 0.0f}, color}  //右上
 	};	
 
 	UINT64 vertexSize = sizeof(vertices);
-	UINT vertexStride = sizeof(XMFLOAT3);
+	UINT vertexStride = sizeof(Vertex);
 
 	pVertexBuff = new VertexBuffer(vertexSize, vertexStride);
 	pVertexBuff->CopyBufferToVRAM(vertices);
@@ -90,7 +90,8 @@ GameEngine::Rectangle::Rectangle(const float width, const float height) :
 		//インプットレイアウトを作成
 		D3D12_INPUT_ELEMENT_DESC elementDesc[] =
 		{
-			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+			{ "COLOR"	, 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
 		};
 
 		D3D12_INPUT_LAYOUT_DESC inputLayout = {};

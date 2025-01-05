@@ -16,7 +16,7 @@ public:
 	/// FPSManager‚ğ‰Šú‰»
 	/// </summary>
 	/// <param name="TARGET_FPS">–Ú•W‚Æ‚·‚éFPS</param>
-	FPSManager(const UINT TARGET_FPS);
+	FPSManager(const float TARGET_FPS);
 
 	/// <summary>
 	/// FPS‚ğŒvZ
@@ -32,15 +32,14 @@ public:
 	/// DeltaTime‚ğ•Ô‚·
 	/// </summary>
 	/// <returns>float DeltaTime</returns>
-	inline float GetDeltaTime() { return mDeltaTime; }
+	inline float GetDeltaTime() { return mDeltaTime_s; }
 
 	~FPSManager();
 
 private:
-	const double FRAME_TIME;
-		  float  mDeltaTime		 = 0.0f;
-		  float  mFPS			 = 0.0f;
-		  int	 mFrameCount	 = 0;
+	const float FRAME_TIME_S;
+		  float mDeltaTime_s	 = 0.0f;
+		  float mFPS			 = 0.0f;
 
 	LARGE_INTEGER mTime_Previous = {};
 	LARGE_INTEGER mTime_Current	 = {};
