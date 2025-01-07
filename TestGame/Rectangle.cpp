@@ -84,7 +84,6 @@ GameEngine::Rectangle::Rectangle(XMFLOAT4 color, const float width, const float 
 		pRootSig = new RootSignature(&rootSigDesc);
 		pRootSig->CreateRootSignature();
 	}
-
 	//PSO関連
 	{
 		//インプットレイアウトを作成
@@ -100,8 +99,8 @@ GameEngine::Rectangle::Rectangle(XMFLOAT4 color, const float width, const float 
 
 		//PSOを作成
 		pPso = new PSO(inputLayout, pRootSig->GetPointerOfRootSignature());
-		pPso->CompileAndSetVS(L"Rectangle_VS.hlsl");
-		pPso->CompileAndSetPS(L"Rectangle_PS.hlsl");
+		pPso->CompileAndSetVS(L"Assets/ShaderFiles/Rectangle_VS.hlsl");
+		pPso->CompileAndSetPS(L"Assets/ShaderFiles/Rectangle_PS.hlsl");
 		pPso->CreatePipeline();
 	}
 }

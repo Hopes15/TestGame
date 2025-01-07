@@ -39,6 +39,7 @@ void PSO::CompileAndSetVS(const LPCWSTR& filePath, LPCSTR entryPoint)
 		/*ppErrorBlob	*/ errorBlob.GetAddressOf()
 	);
 
+#ifdef _DEBUG
 	//エラー処理
 	if (FAILED(result))
 	{
@@ -62,6 +63,7 @@ void PSO::CompileAndSetVS(const LPCWSTR& filePath, LPCSTR entryPoint)
 		}
 	}
 
+#endif
 	//解放
 	errorBlob.Reset();
 
@@ -84,6 +86,7 @@ void PSO::CompileAndSetPS(const LPCWSTR& filePath, LPCSTR entryPoint)
 		/*ppErrorBlob	*/ errorBlob.GetAddressOf()
 	);
 
+#ifdef _DEBUG
 	//エラー処理
 	if (FAILED(result))
 	{
@@ -106,6 +109,7 @@ void PSO::CompileAndSetPS(const LPCWSTR& filePath, LPCSTR entryPoint)
 			::OutputDebugStringA(errstr.c_str());
 		}
 	}
+#endif
 
 	//解放
 	errorBlob.Reset();

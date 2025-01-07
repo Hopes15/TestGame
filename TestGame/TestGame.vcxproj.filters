@@ -13,9 +13,6 @@
     <ClCompile Include="RootSignature.cpp">
       <Filter>GameEngine\RootSignature</Filter>
     </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>GameEngine\Triangle</Filter>
-    </ClCompile>
     <ClCompile Include="ConstantBuffer.cpp">
       <Filter>GameEngine\ConstantBuffer</Filter>
     </ClCompile>
@@ -104,9 +101,6 @@
     <ClInclude Include="RootSignature.h">
       <Filter>GameEngine\RootSignature</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>GameEngine\Triangle</Filter>
-    </ClInclude>
     <ClInclude Include="SharedStructs.h">
       <Filter>GameEngine\Utilities</Filter>
     </ClInclude>
@@ -134,19 +128,5 @@
     <ClInclude Include="Input.h">
       <Filter>GameEngine\Input</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Triangle_PS.hlsl">
-      <Filter>GameEngine\Triangle</Filter>
-    </FxCompile>
-    <FxCompile Include="Triangle_VS.hlsl">
-      <Filter>GameEngine\Triangle</Filter>
-    </FxCompile>
-    <FxCompile Include="Rectangle_VS.hlsl">
-      <Filter>GameEngine\Rectangle</Filter>
-    </FxCompile>
-    <FxCompile Include="Rectangle_PS.hlsl">
-      <Filter>GameEngine\Rectangle</Filter>
-    </FxCompile>
   </ItemGroup>
 </Project>

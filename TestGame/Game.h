@@ -34,7 +34,6 @@ private:
 	DX12*		pDX12		= nullptr;
 	BackBuffer* pBackBuff	= nullptr;
 	Input*		pInput		= nullptr;
-
 	GameEngine::Rectangle* pBall    = nullptr;
 	GameEngine::Rectangle* pWall_T  = nullptr;
 	GameEngine::Rectangle* pWall_B  = nullptr;

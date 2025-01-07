@@ -193,7 +193,6 @@ void Game::Output()
 	//バックバッファーの準備
 	pBackBuff->OpenBackBuffer(clearColor);
 	////////////////////////////////////////////////////////////////////
-
 	//描画
 	pBall	->Draw();
 	pWall_T ->Draw();
@@ -227,7 +226,6 @@ void Game::InitGameSystem()
 	mWin		 =  0;
 	SPEED_PLAYER =  300.0f;
 	SPEED_BALL   =	150.0f;
-
 	//ゲーム処理
 	////////////////////////////////////////////////////////////////////
 	//ボール
