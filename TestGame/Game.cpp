@@ -230,7 +230,7 @@ void Game::InitGameSystem()
 	////////////////////////////////////////////////////////////////////
 	//ボール
 	Transform trans_Ball = {};
-	auto x_Ball = (WIDTH / 2) - (BALL_WIDTH / 2);
+	auto x_Ball = (WIDTH  / 2) - (BALL_WIDTH  / 2);
 	auto y_Ball = (HEIGHT / 2) - (BALL_HEIGHT / 2);
 	trans_Ball.SetPosition(x_Ball, y_Ball, 0);
 
@@ -254,8 +254,8 @@ void Game::InitGameSystem()
 
 	//パドル(プレイヤー)
 	Transform trans_Paddle[2] = {};
-	auto x_P1 = 0.0f;
-	auto x_P2 = WIDTH - PADDLE_WIDTH;
+	auto x_P1     = 0.0f;
+	auto x_P2	  = WIDTH - PADDLE_WIDTH;
 	auto y_Player = (HEIGHT - PADDLE_HEIGHT) / 2.0f; //パドルを真ん中に配置
 	trans_Paddle[0].SetPosition(x_P1, y_Player, 0);
 	trans_Paddle[1].SetPosition(x_P2, y_Player, 0);

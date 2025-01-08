@@ -8,7 +8,7 @@ int main()
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 #endif
-	
+
 	Game testGame;
 	testGame.Initialize();
 	testGame.RunLoop();

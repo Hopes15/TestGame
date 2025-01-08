@@ -74,11 +74,11 @@ GameEngine::Rectangle::Rectangle(XMFLOAT4 color, const float width, const float 
 
 		//RootSignatureDesc
 		D3D12_ROOT_SIGNATURE_DESC rootSigDesc = {};
-		rootSigDesc.pParameters = rootParams;
-		rootSigDesc.NumParameters = _countof(rootParams);
-		rootSigDesc.pStaticSamplers = samplerDesc;
+		rootSigDesc.pParameters		  = rootParams;
+		rootSigDesc.NumParameters	  = _countof(rootParams);
+		rootSigDesc.pStaticSamplers	  = samplerDesc;
 		rootSigDesc.NumStaticSamplers = _countof(samplerDesc);
-		rootSigDesc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
+		rootSigDesc.Flags			  = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
 
 		//ルートシグネチャを作成
 		pRootSig = new RootSignature(&rootSigDesc);
@@ -95,12 +95,12 @@ GameEngine::Rectangle::Rectangle(XMFLOAT4 color, const float width, const float 
 
 		D3D12_INPUT_LAYOUT_DESC inputLayout = {};
 		inputLayout.pInputElementDescs = elementDesc;
-		inputLayout.NumElements = _countof(elementDesc);
+		inputLayout.NumElements		   = _countof(elementDesc);
 
 		//PSOを作成
 		pPso = new PSO(inputLayout, pRootSig->GetPointerOfRootSignature());
-		pPso->CompileAndSetVS(L"Assets/ShaderFiles/Rectangle_VS.hlsl");
-		pPso->CompileAndSetPS(L"Assets/ShaderFiles/Rectangle_PS.hlsl");
+		pPso->CompileAndSetVS(L"Rectangle_VS.hlsl");
+		pPso->CompileAndSetPS(L"Rectangle_PS.hlsl");
 		pPso->CreatePipeline();
 	}
 }
@@ -120,8 +120,6 @@ void GameEngine::Rectangle::Update()
 	auto translation = XMMatrixTranslation(mTransform.position.x, mTransform.position.y, mTransform.position.z);
 	mWorld = translation;
 	pCBuff_World->UpdateCBuffer(&mWorld);
-
-	//std::cout << "x : " << mTransform.position.x << " y : " << mTransform.position.y << " z : " << mTransform.position.z << std::endl;
 }
 
 void GameEngine::Rectangle::Draw()
