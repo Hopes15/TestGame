@@ -35,7 +35,6 @@ namespace GameEngine
 		/// <summary>
 		/// 描画命令
 		/// </summary>
-		/// <param name="cmdList">ID3D12GraphicsCommandListのインスタンス</param>
 		void Draw();
 
 		~Rectangle();

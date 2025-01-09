@@ -29,6 +29,10 @@ public:
 	/// <param name="pSomeThing">コンスタントバッファーに確保する何か</param>
 	void CopyBufferToVRAM(void* pSomeThing);
 
+	/// <summary>
+	/// ConstantBufferの内容を更新する
+	/// </summary>
+	/// <param name="pSomeThing">コンスタントバッファーに確保する何か</param>
 	void UpdateCBuffer(void* pSomeThing);
 
 	~ConstantBuffer();

@@ -32,9 +32,7 @@ void FPSManager::CalcFPS()
 	mTime_Previous = mTime_Current;
 }
 
-FPSManager::~FPSManager()
-{
-}
+FPSManager::~FPSManager(){}
 
 void FPSManager::OutputFPS()
 {
