@@ -3,7 +3,7 @@
 void Game::Initialize()
 {
 	//ウィンドウ作成
-	mWindow.SetUpWindow(WIDTH, HEIGHT, L"Pong Game");
+	mWindow.SetUpWindow(WIDTH, HEIGHT, L"Pong Game", IDI_ICON1);
 
 	//FPSManager(60FPSに指定)
 	//TODO:なぜかフレームレート上限なしになる

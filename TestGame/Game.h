@@ -7,6 +7,7 @@
 #include "SharedStructs.h"
 #include "Input.h"
 #include <random>
+#include "resource.h"
 
 class Game
 {

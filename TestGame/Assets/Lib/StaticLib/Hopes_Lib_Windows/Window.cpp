@@ -11,13 +11,14 @@ LRESULT WindowProcedure(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	return DefWindowProc(hwnd, msg, wparam, lparam);
 }
 
-void Window::SetUpWindow(const LONG WINDOW_WIDTH, const LONG WINDOW_HEIGHT, LPCWSTR APP_NAME)
+void Window::SetUpWindow(const LONG WINDOW_WIDTH, const LONG WINDOW_HEIGHT, LPCWSTR APP_NAME, unsigned int icon_ID)
 {
 	//ウィンドウクラスの定義
 	mWndClass.cbSize = sizeof(WNDCLASSEX);
 	mWndClass.lpfnWndProc = (WNDPROC)WindowProcedure;
 	mWndClass.lpszClassName = _T("GameEngine");
 	mWndClass.hInstance = GetModuleHandle(nullptr);
+	mWndClass.hIcon = (HICON)LoadImage(mWndClass.hInstance, MAKEINTRESOURCE(icon_ID), IMAGE_ICON, GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON), 0);
 
 	RegisterClassEx(&mWndClass);
 

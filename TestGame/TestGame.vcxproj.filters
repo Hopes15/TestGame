@@ -84,6 +84,9 @@
     <Filter Include="TestGame\Rectangle">
       <UniqueIdentifier>{1000f6af-7b7a-40f1-8f2c-3800719d63b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestGame\ApplicationICON">
+      <UniqueIdentifier>{f00d846f-7b63-4370-bd7d-7e0f38227c29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DX12.h">
@@ -125,5 +128,18 @@
     <ClInclude Include="Input.h">
       <Filter>GameEngine\Input</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>TestGame\ApplicationICON</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Aseprite\Icon_PongGame.ico">
+      <Filter>TestGame\ApplicationICON</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TestGame.rc">
+      <Filter>TestGame\ApplicationICON</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
