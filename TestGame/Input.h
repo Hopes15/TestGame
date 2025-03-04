@@ -32,7 +32,7 @@ public:
 	~Input();
 
 private:
-	LPDIRECTINPUT8		 pInput = nullptr;
+	LPDIRECTINPUT8		 pInput  = nullptr;
 	LPDIRECTINPUTDEVICE8 pDevice = nullptr;
 	BYTE mKeys[KEY_MAX];
 };

@@ -79,5 +79,5 @@ Input::~Input()
 {
 	pDevice->Unacquire();
 	pDevice->Release();
-	pInput->Release();
+	pInput ->Release();
 }

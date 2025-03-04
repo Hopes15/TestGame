@@ -27,13 +27,13 @@ DX12::DX12(UINT WIDTH, UINT HEIGHT, HWND hwnd) :
 #endif
 
 	//ƒ‚ƒWƒ…[ƒ‹‚Ì‰Šú‰»
-	if (!CreateFactory()) return;
-	if (!CreateDevice()) return;
+	if (!CreateFactory())	   return;
+	if (!CreateDevice())	   return;
 	if (!CreateCmdAllocator()) return;
-	if (!CreateCmdList()) return;
-	if (!CreateCmdQueue()) return;
-	if (!CreateSwapChain()) return;
-	if (!CreateFence()) return;
+	if (!CreateCmdList())	   return;
+	if (!CreateCmdQueue())	   return;
+	if (!CreateSwapChain())	   return;
+	if (!CreateFence())		   return;
 }
 
 DX12::~DX12()

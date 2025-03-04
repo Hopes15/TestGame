@@ -5,8 +5,8 @@
 #include "PSO.h"
 #include "RootSignature.h"
 #include "DX12.h"
-#include "SharedStructs.h"
 #include "DescriptorHeap.h"
+#include "SharedStructs.h"
 
 namespace GameEngine
 {

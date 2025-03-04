@@ -20,16 +20,16 @@
       <Filter>GameEngine\DescriptorHeap</Filter>
     </ClCompile>
     <ClCompile Include="Rectangle.cpp">
-      <Filter>TestGame\Rectangle</Filter>
+      <Filter>PongGame\Rectangle</Filter>
     </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>GameEngine\IndexBuffer</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>TestGame</Filter>
+      <Filter>PongGame</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>TestGame</Filter>
+      <Filter>PongGame</Filter>
     </ClCompile>
     <ClCompile Include="BackBuffer.cpp">
       <Filter>GameEngine\BackBuffer</Filter>
@@ -69,9 +69,6 @@
     <Filter Include="GameEngine\IndexBuffer">
       <UniqueIdentifier>{201b29e2-47e6-4e02-ba53-58f05b4938d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestGame">
-      <UniqueIdentifier>{631216d1-3b9a-4d7b-94c2-e9c4699ab0c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\BackBuffer">
       <UniqueIdentifier>{cccab2d3-e8a8-4d16-baaa-99ee68d2611b}</UniqueIdentifier>
     </Filter>
@@ -81,10 +78,13 @@
     <Filter Include="GameEngine\Input">
       <UniqueIdentifier>{03700266-f322-403d-acca-671642be247c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestGame\Rectangle">
+    <Filter Include="PongGame">
+      <UniqueIdentifier>{631216d1-3b9a-4d7b-94c2-e9c4699ab0c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PongGame\Rectangle">
       <UniqueIdentifier>{1000f6af-7b7a-40f1-8f2c-3800719d63b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestGame\ApplicationICON">
+    <Filter Include="PongGame\ApplicationICON">
       <UniqueIdentifier>{f00d846f-7b63-4370-bd7d-7e0f38227c29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -111,13 +111,13 @@
       <Filter>GameEngine\DescriptorHeap</Filter>
     </ClInclude>
     <ClInclude Include="Rectangle.h">
-      <Filter>TestGame\Rectangle</Filter>
+      <Filter>PongGame\Rectangle</Filter>
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>GameEngine\IndexBuffer</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>TestGame</Filter>
+      <Filter>PongGame</Filter>
     </ClInclude>
     <ClInclude Include="BackBuffer.h">
       <Filter>GameEngine\BackBuffer</Filter>
@@ -129,17 +129,17 @@
       <Filter>GameEngine\Input</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>TestGame\ApplicationICON</Filter>
+      <Filter>PongGame\ApplicationICON</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Aseprite\Icon_PongGame.ico">
-      <Filter>TestGame\ApplicationICON</Filter>
+      <Filter>PongGame\ApplicationICON</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestGame.rc">
-      <Filter>TestGame\ApplicationICON</Filter>
+      <Filter>PongGame\ApplicationICON</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>
